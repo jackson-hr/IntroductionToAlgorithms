@@ -13,11 +13,11 @@ package chapter2
  *		A[i + 1] = key
  */
 
-// insertionSortAsc 插入排序(正序)
+// InsertionSortAsc 插入排序(正序)
 // 1、从第二个元素(下标为1)开始和前面数据进行比较
 // 2、如果比当前值大则右移前面的数值
 // 3、直到找到当前数据的对应位置则结束查找插入数据
-func insertionSortAsc(args []int) []int {
+func InsertionSortAsc(args []int) []int {
 	for j := 1; j < len(args); j++ {
 		key := args[j]
 		i := j - 1
@@ -29,8 +29,8 @@ func insertionSortAsc(args []int) []int {
 	return args
 }
 
-// insertionSortDesc 插入排序(倒序)
-func insertionSortDesc(args []int) []int {
+// InsertionSortDesc 插入排序(倒序)
+func InsertionSortDesc(args []int) []int {
 	for j := 1; j < len(args); j++ {
 		key := args[j]
 		i := j - 1
