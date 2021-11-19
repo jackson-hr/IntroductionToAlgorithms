@@ -17,11 +17,23 @@ package chapter2
 // 1、从第二个元素(下标为1)开始和前面数据进行比较
 // 2、如果比当前值大则右移前面的数值
 // 3、直到找到当前数据的对应位置则结束查找插入数据
-func insertion_sort(args []int) []int {
+func insertion_sort_asc(args []int) []int {
 	for j := 1; j < len(args); j++ {
 		key := args[j]
 		i := j - 1
 		for ; i >= 0 && args[i] > key; i-- {
+			args[i+1] = args[i]
+		}
+		args[i+1] = key
+	}
+	return args
+}
+
+func insertion_sort_desc(args []int) []int {
+	for j := 1; j < len(args); j++ {
+		key := args[j]
+		i := j - 1
+		for ; i >= 0 && args[i] < key; i-- {
 			args[i+1] = args[i]
 		}
 		args[i+1] = key
