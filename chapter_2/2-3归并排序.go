@@ -32,34 +32,37 @@ package chapter2
 // merge 子序列排序
 // a 需要排序的数组
 // l 左下标, m 中间分割下标, r 右下标
-func merge(a []int, l, m, r int) []int {
+func merge(a *[]int, l, m, r int) []int {
 	ll := m - l + 1
 	rl := r - m
 	var L = make([]int, ll)
 	var R = make([]int, rl)
 	for i := 0; i < ll; i++ {
-		L[i] = a[l+i-1]
+		L[i] = (*a)[l+i]
 	}
 	for j := 0; j < rl; j++ {
-		R[j] = a[m+j]
+		R[j] = (*a)[m+j+1]
 	}
-	i, j := 1, 1
-	for ind := l; ind < r; ind++ {
-		if L[i] <= R[j] {
-			a[ind] = L[i]
+	i, j := 0, 0
+	for ind := l; ind <= r; ind++ {
+		if i >= ll && j >= rl {
+			break
+		}
+		if i < ll && (j >= rl || L[i] <= R[j]) {
+			(*a)[ind] = L[i]
 			i = i + 1
 		} else {
-			a[ind] = R[j]
+			(*a)[ind] = R[j]
 			j = j + 1
 		}
 	}
-	return a
+	return *a
 }
 
 // MergeSort 归并排序
-func MergeSort(a []int, l, r int) []int {
+func MergeSort(a *[]int, l, r int) []int {
 	if l >= r {
-		return a
+		return *a
 	}
 	m := (l + r) / 2
 	MergeSort(a, l, m)
